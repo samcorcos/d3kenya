@@ -3,7 +3,7 @@ Template.home.rendered = function() {
 		var width = 1000,
 		    height = 1000;
 			///add stuff here
-			var projection = d3.geo.albersUsa()
+			var projection = d3.geo.mercator()
 		    .scale(1000)
 		    .translate([width / 2, height / 2]);
 
@@ -12,36 +12,44 @@ Template.home.rendered = function() {
 		    .projection(projection);
 
 
-		var svg = d3.select("body").append("svg")
+		var svg = d3.select("#kenyaMap").append("svg")
 		    .attr("width", width)
-		    .attr("height", height);
+		    .attr("height", height)
+		    // .append("rect")
+		    // .attr({x:10,y:10,height:100,width:100,fill:'orange'})
+
+		var centralPath =  "central.json";
 
 
-		d3.json("us.json", function(error, us) {
-		  if (error) return console.error(error);
+
+		$.getJSON("./central.json", function(json) {
+
+   			console.log('JSON ',json); // this will show the info it in firebug console
+		});
+			console.log('HERE')
+
+		// // var centralPath =  "../../../both/lib/central.json";
+		// console.log(centralPath)
 
 
-		  svg.append("path")
-		      .datum(topojson.feature(us, us.objects.subunits))
-		      .attr("d", path);
+		// d3.json(centralPath, function(error, us) {
+		// 	console.log('US ',us)
+		//   if (error) return console.error(error);
 
-		  svg.selectAll(".subunit")
-		      .data(topojson.feature(us, us.objects.subunits).features)
-		    .enter().append("path")
-		      .attr("class", function(d) { return "subunit " + d.id; }) 
-		      //added id in above line to use as selector: ex US-NY
-		      .attr("d", path);
 
-		/////////Gives state boundary lines
-		  // svg.insert('path','.graticule')
-		  //   .datum(topojson.feature(us, us.objects.subunits,function(a, b) {console.log(a,b); return a !== b; }))
-		  //   .attr('class','state-boundary')
-		  //   .attr("d", path);
+		//   svg.append("path")
+		//       .datum(topojson.feature(us, us.objects.subunits))
+		//       .attr("d", path);
 
-  
+		//   svg.selectAll(".subunit")
+		//       .data(topojson.feature(us, us.objects.subunits).features)
+		//     .enter().append("path")
+		//       // .attr("class", function(d) { return "subunit " + d.id; }) 
+		      
+		//       .attr("d", path);
 
-};
-
+		// });
+}
 Template.home.events({
 
 });
