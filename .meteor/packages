@@ -5,9 +5,10 @@
 
 meteor-platform
 standard-app-packages
-less
 spiderable
 iron:router
 natestrauser:font-awesome
 matb33:collection-hooks
+d0minikk:materialize-meteor
+sacha:spin
 
