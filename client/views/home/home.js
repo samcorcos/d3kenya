@@ -3,7 +3,7 @@ Template.home.rendered = function() {
 		var width = 1000,
 		    height = 1000;
 			///add stuff here
-			var projection = d3.geo.mercator()
+		var projection = d3.geo.mercator()
 		    .scale(1000)
 		    .translate([width / 2, height / 2]);
 
@@ -22,33 +22,35 @@ Template.home.rendered = function() {
 
 
 
-		$.getJSON("./central.json", function(json) {
+		// $.getJSON("./central.json", function(json) {
 
-   			console.log('JSON ',json); // this will show the info it in firebug console
-		});
-			console.log('HERE')
+  //  			console.log('JSON ',json); // this will show the info it in firebug console
+		// });
+			
 
 		// // var centralPath =  "../../../both/lib/central.json";
 		// console.log(centralPath)
 
 
-		// d3.json(centralPath, function(error, us) {
-		// 	console.log('US ',us)
-		//   if (error) return console.error(error);
+		d3.json(centralPath, function(error, kenya) {
+			central = kenya;
+			console.log('Kenya ',kenya)
+		  if (error) return console.error(error);
 
 
-		//   svg.append("path")
-		//       .datum(topojson.feature(us, us.objects.subunits))
-		//       .attr("d", path);
+		  svg.append("path")
+		      // .datum(topojson.feature(kenya, us.objects.subunits))
+		      // .attr("d", path)
+		      // .attr('class','subunit')
 
-		//   svg.selectAll(".subunit")
-		//       .data(topojson.feature(us, us.objects.subunits).features)
-		//     .enter().append("path")
-		//       // .attr("class", function(d) { return "subunit " + d.id; }) 
+		  // svg.selectAll(".subunit")
+		  //     .data(topojson.feature(us, us.objects.subunits).features)
+		  //   .enter().append("path")
+
 		      
-		//       .attr("d", path);
+		      .attr("d", path);
 
-		// });
+		});
 }
 Template.home.events({
 
