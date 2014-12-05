@@ -14,7 +14,7 @@ Template.home.rendered = function() {
 		    .attr("width", width)
 		    .attr("height", height)
 
-		var centralPath =  "central.json";
+		var centralPath =  "central.geojson";
 
 		d3.json(centralPath, function(error, kenya) {
 			central = kenya;
